@@ -1,0 +1,13 @@
+__pycache__/
+/.idea/
+.idea
+
+.venv
+/.venv/
+
+.env-dev
+.env-prod
+.env-test
+
+dev.db
+/dev.db/
