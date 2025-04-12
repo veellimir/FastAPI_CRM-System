@@ -1,16 +1,16 @@
-from typing import ClassVar
-
 from pydantic import BaseModel
 from pydantic_settings import BaseSettings
 
-from .env_config import (
-    SECRET_KEY,
-    ACCESS_TOKEN_EXPIRE_MINUTES,
-    SMTP_SERVER,
-    SMTP_PORT,
-    SMTP_USERNAME,
-    SMTP_PASSWORD
-)
+# from settings.env_config import (
+#     SECRET_KEY,
+#     ACCESS_TOKEN_EXPIRE_MINUTES,
+#     SMTP_SERVER,
+#     SMTP_PORT,
+#     ALGORITHM,
+#     SMTP_USERNAME,
+#     SMTP_PASSWORD
+# )
+
 
 class RunConfig(BaseModel):
     host: str = "0.0.0.0"
@@ -26,9 +26,6 @@ class ApiPrefix(BaseModel):
     v1: ApiV1Prefix = ApiV1Prefix()
 
 
-
-
-
 class Settings(BaseSettings):
     DATABASE_URL: str
 
@@ -36,8 +33,11 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int
     SMTP_SERVER: str
     SMTP_PORT: int
+    ALGORITHM: str
     SMTP_USERNAME: str
     SMTP_PASSWORD: str
+
+    FRONTED_URL: str
 
     run: RunConfig = RunConfig()
     api: ApiPrefix = ApiPrefix()
