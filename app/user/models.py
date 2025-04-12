@@ -1,9 +1,17 @@
-from sqlalchemy import Column, Integer, String
-from settings.database import Base
+from fastapi_users_db_sqlalchemy import SQLAlchemyBaseUserTable, SQLAlchemyUserDatabase
+
+from core.settings import Base
+from core.mixins import IdIntPkMixin
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from sqlalchemy.ext.asyncio import AsyncSession
 
 
-class User(Base):
-    __tablename__ = "users"
+class User(Base, IdIntPkMixin, SQLAlchemyBaseUserTable[int]):
+    # TODO: Добавить нужные поля
 
-    id = Column(Integer, primary_key=True, index=True)
-    email = Column(String, unique=True, index=True, nullable=False)
+    @classmethod
+    def get_db(cls, session: "AsyncSession"):  # Брать для получения этого объекта
+        return SQLAlchemyUserDatabase(session, cls)

@@ -5,8 +5,10 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from app.authentication.models import User
-from settings.database import Base
+from core.settings import Base
+
+from app.user import User
+from app.authentication import AccessToken
 
 config = context.config
 
