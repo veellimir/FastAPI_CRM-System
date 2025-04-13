@@ -14,13 +14,14 @@ from core.settings import settings
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # startup
-    await create_superuser()
+    # await create_superuser()
     yield
     # shutdown
 
 
 app = FastAPI(
     title="CRM System",
+    description="🧠 CRM система —  управления клиентами и сотрудниками. ",
     lifespan=lifespan,
 )
 
