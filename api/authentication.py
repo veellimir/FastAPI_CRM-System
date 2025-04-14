@@ -19,6 +19,7 @@ router.include_router(
         authentication_backend,
         # requires_verification=True, вход только подтвержденных польз-тей
     ),
+    responses={401: {"description": "Неверный логин или пароль"}},
 )
 
 router.include_router(

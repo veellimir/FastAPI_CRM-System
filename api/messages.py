@@ -16,7 +16,7 @@ router = APIRouter(
 )
 
 
-@router.get("")
+@router.get("", summary="Получить сообщение для пользователя")
 def get_user_messages(user: User = Depends(current_active_user)):
     return {
         "messages": ["m1", "m2", "m3"],
@@ -24,7 +24,7 @@ def get_user_messages(user: User = Depends(current_active_user)):
     }
 
 
-@router.get("/secrets")
+@router.get("/secrets", summary="Получить сообщение для администратора")
 def get_superuser_messages(user: User = Depends(current_active_superuser)):
     return {
         "messages": ["secret-m1", "secret-m2", "secret-m3"],
