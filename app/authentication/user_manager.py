@@ -1,14 +1,13 @@
 import logging
 
 from fastapi import Depends
-
 from fastapi_users import BaseUserManager, IntegerIDMixin
 
 from core.settings import settings
 
 from app.user import User
 
-from .dependencies.services import send_email
+from .dependencies.smtp import send_email
 from .dependencies.user import get_users_db
 
 from typing import Optional, TYPE_CHECKING, Annotated
