@@ -7,7 +7,7 @@ from core.settings import settings
 
 from app.user import User
 
-from .dependencies.smtp import send_email
+from .dependencies.smtp import send_custom_email
 from .dependencies.user import get_users_db
 
 from typing import Optional, TYPE_CHECKING, Annotated
@@ -16,7 +16,6 @@ if TYPE_CHECKING:
     from fastapi import Request
     from fastapi_users_db_sqlalchemy import SQLAlchemyUserDatabase
 
-# TODO: удалить логирование
 log = logging.getLogger(__name__)
 
 
@@ -43,7 +42,15 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
         log.warning('Для пользователя %r запрошена верификация: %r', user.id, token)
 
         verify_url = f"{settings.FRONTEND_URL}/verify?token={token}"
-        await send_email(user.email, verify_url)
+        await send_custom_email(
+            to_email=user.email,
+            subject="Подтверждение аккаунта",
+            title="Добро пожаловать в CRM - System",
+            body_text="Для подтверждения вашего аккаунта нажмите на кнопку ниже:",
+            button_text="Подтвердить аккаунт",
+            link=verify_url,
+            footer_note="Если вы не регистрировались, просто проигнорируйте это письмо."
+        )
 
     async def on_after_forgot_password(
             self,
@@ -51,10 +58,17 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
             token: str,
             request: Optional["Request"] = None,
     ):
-        log.warning(
-            "Пользователь %r забыл свой пароль. Токен сброса:%r",
-            user.id,
-            token,
+        log.warning("Пользователь %r забыл свой пароль. Токен сброса:%r",user.id, token)
+
+        reset_url = f"{settings.FRONTEND_URL}/reset-password?token={token}"
+        await send_custom_email(
+            to_email=user.email,
+            subject="Сброс пароля",
+            title="Восстановление пароля в CRM - System",
+            body_text="Для сброса пароля нажмите на кнопку ниже:",
+            button_text="Сбросить пароль",
+            link=reset_url,
+            footer_note="Если это были не вы — проигнорируйте это письмо."
         )
 
 
