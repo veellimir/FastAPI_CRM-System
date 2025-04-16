@@ -1,10 +1,6 @@
 import asyncio
 import contextlib
 
-from os import getenv
-
-from click import password_option
-
 from app.authentication.user_manager import get_user_manager
 from app.authentication.dependencies.user import get_users_db
 from app.authentication.user_manager import UserManager

@@ -4,11 +4,13 @@ __pycache__/
 
 .venv
 /.venv/
+venv
 
 .env-dev
 .env-prod
 .env-test
 .env
+/start.txt
 
 dev.db
 /dev.db/

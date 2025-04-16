@@ -11,6 +11,7 @@ class ApiV1Prefix(BaseModel):
     prefix: str = "/api/v1"
     auth: str = "/auth"
     users: str = "/users"
+    messages: str = "/messages"
 
 
 class ApiPrefix(BaseModel):
@@ -31,6 +32,13 @@ class AccessToken(BaseModel):
 class Settings(BaseSettings):
     DATABASE_URL: str
     SECRET_KEY: str
+
+    FRONTEND_URL: str
+
+    SMTP_EMAIL_HOST_USER: str
+    SMTP_EMAIL_HOST_PASSWORD: str
+    SMTP_EMAIL_HOST: str
+    SMTP_EMAIL_PORT: int
 
     ACCESS_TOKEN_LIFETIME_SECONDS: int
     RESET_PASSWORD_TOKEN_SECRET: str
