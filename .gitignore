@@ -10,6 +10,7 @@ venv
 .env-prod
 .env-test
 .env
+/start.txt
 
 dev.db
 /dev.db/
