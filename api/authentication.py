@@ -18,7 +18,7 @@ router = APIRouter(
 router.include_router(
     router=fastapi_users.get_auth_router(
         authentication_backend,
-        # requires_verification=True, вход только подтвержденных польз-тей
+        requires_verification=True,
     ),
     responses={401: {"description": "Неверный логин или пароль"}},
 )
