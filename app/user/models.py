@@ -1,5 +1,8 @@
 from fastapi_users_db_sqlalchemy import SQLAlchemyBaseUserTable, SQLAlchemyUserDatabase
 
+from sqlalchemy import String
+from sqlalchemy.orm import Mapped, mapped_column
+
 from core.settings import Base
 from core.mixins import IdIntPkMixin
 
@@ -10,7 +13,9 @@ if TYPE_CHECKING:
 
 
 class User(Base, IdIntPkMixin, SQLAlchemyBaseUserTable[int]):
-    # TODO: Добавить нужные поля
+    first_name: Mapped[str | None] = mapped_column(String(length=100))
+    last_name: Mapped[str | None] = mapped_column(String(length=100))
+    image: Mapped[str | None] = mapped_column(String(255))
 
     @classmethod
     def get_db(cls, session: "AsyncSession"):  # Брать для получения этого объекта

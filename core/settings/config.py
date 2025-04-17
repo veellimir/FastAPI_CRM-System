@@ -29,6 +29,9 @@ class AccessToken(BaseModel):
     verification_token_secret: str
 
 
+class MediaPath(BaseSettings):
+    MEDIA_FOLDER_PROFILE: str
+
 class Settings(BaseSettings):
     DATABASE_URL: str
     SECRET_KEY: str
@@ -49,6 +52,8 @@ class Settings(BaseSettings):
     SUPER_USER_IS_ACTIVE: bool
     SUPER_USER_IS_SUPERUSER: bool
     SUPER_USER_IS_VERIFIED: bool
+
+    media: MediaPath = MediaPath()
 
     run: RunConfig = RunConfig()
     api: ApiPrefix = ApiPrefix()
