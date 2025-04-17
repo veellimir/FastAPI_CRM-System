@@ -6,6 +6,9 @@ __pycache__/
 /.venv/
 venv
 
+media
+media/
+
 .env-dev
 .env-prod
 .env-test
