@@ -6,7 +6,6 @@ from .env_config import DATABASE_URL
 SECRET = "SECRET"
 
 engine = create_async_engine(DATABASE_URL, echo=True)
-
 AsyncSessionLocal = async_sessionmaker(bind=engine, class_=AsyncSession, expire_on_commit=False)
 
 class Base(DeclarativeBase):
