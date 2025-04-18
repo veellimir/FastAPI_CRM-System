@@ -5,17 +5,17 @@ from sqlalchemy import pool
 
 from alembic import context
 
+from core.settings.database import DATABASE_URL
 from core.settings import Base
 
 from app.user import User
 from app.authentication import AccessToken
 
 config = context.config
-
+config.set_main_option("sqlalchemy.url", f"{DATABASE_URL}?async_fallback=True")
 
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
-
 
 target_metadata = Base.metadata
 

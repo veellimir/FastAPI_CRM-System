@@ -9,4 +9,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+COPY wait-for-it.sh /usr/bin/wait-for-it.sh
+RUN chmod +x /usr/bin/wait-for-it.sh
+
 #CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

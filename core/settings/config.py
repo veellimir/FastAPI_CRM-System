@@ -32,8 +32,23 @@ class AccessToken(BaseModel):
 class MediaPath(BaseSettings):
     MEDIA_FOLDER_PROFILE: str
 
-class Settings(BaseSettings):
+
+class DataBase(BaseSettings):
     DATABASE_URL: str
+    DATABASE_NAME: str
+    DATABASE_USER: str
+    DATABASE_PASSWORD: str
+    DATABASE_HOST: str
+    DATABASE_PORT: int
+
+class Settings(BaseSettings):
+    # DATABASE_URL: str
+    # DATABASE_NAME: str
+    # DATABASE_USER: str
+    # DATABASE_PASSWORD: str
+    # DATABASE_HOST: str
+    # DATABASE_PORT: int
+
     SECRET_KEY: str
 
     FRONTEND_URL: str
@@ -53,6 +68,7 @@ class Settings(BaseSettings):
     SUPER_USER_IS_SUPERUSER: bool
     SUPER_USER_IS_VERIFIED: bool
 
+    db: DataBase = DataBase()
     media: MediaPath = MediaPath()
 
     run: RunConfig = RunConfig()
@@ -68,6 +84,7 @@ class Settings(BaseSettings):
     class Config:
         env_file = ".env"
         env_file_encoding = "utf-8"
+        extra = "allow"
 
 
 settings = Settings()
