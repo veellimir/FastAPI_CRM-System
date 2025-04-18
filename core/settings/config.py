@@ -9,9 +9,11 @@ class RunConfig(BaseModel):
 
 class ApiV1Prefix(BaseModel):
     prefix: str = "/api/v1"
+
     auth: str = "/auth"
     users: str = "/users"
     messages: str = "/messages"
+    news: str = "/news"
 
 
 class ApiPrefix(BaseModel):
@@ -41,14 +43,8 @@ class DataBase(BaseSettings):
     DATABASE_HOST: str
     DATABASE_PORT: int
 
-class Settings(BaseSettings):
-    # DATABASE_URL: str
-    # DATABASE_NAME: str
-    # DATABASE_USER: str
-    # DATABASE_PASSWORD: str
-    # DATABASE_HOST: str
-    # DATABASE_PORT: int
 
+class Settings(BaseSettings):
     SECRET_KEY: str
 
     FRONTEND_URL: str

@@ -18,5 +18,5 @@ class User(Base, IdIntPkMixin, SQLAlchemyBaseUserTable[int]):
     image: Mapped[str | None] = mapped_column(String(255))
 
     @classmethod
-    def get_db(cls, session: "AsyncSession"):  # Брать для получения этого объекта
+    def get_db(cls, session: "AsyncSession"):
         return SQLAlchemyUserDatabase(session, cls)
