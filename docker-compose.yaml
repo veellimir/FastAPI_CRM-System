@@ -1,11 +1,35 @@
 services:
   app:
-    container_name: crm
+    container_name: crm_system_app
     build: ./
     ports:
       - "8000:8000"
     volumes:
       - .:/crm
-#    depends_on:
-#      - db
-    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    depends_on:
+      - postgres
+    environment:
+      DB_HOST: postgres  # Важно: здесь должен быть именно **postgres**, а не localhost
+    command: >
+      bash -c "
+      ./wait-for-it.sh postgres:5432 -- 
+      alembic upgrade head && 
+      uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+      "
+
+  postgres:
+    container_name: crm_system_postgres
+    image: postgres:latest
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: ${DATABASE_NAME}
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
