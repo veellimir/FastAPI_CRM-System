@@ -8,4 +8,4 @@ from core.mixins import IdIntPkMixin
 class UserRole(Base, IdIntPkMixin):
     __tablename__ = "user_role"
 
-    title: Mapped[str] = mapped_column(String(100), nullable=False)
+    title: Mapped[str] = mapped_column(String(100), nullable=False, unique=True)
