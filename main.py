@@ -6,7 +6,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 # from actions.create_superuser import create_superuser
-from api import router as api_router
+from api_v1 import router as api_router
 
 from core.settings import settings
 

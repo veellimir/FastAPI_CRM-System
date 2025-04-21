@@ -11,6 +11,7 @@ from core.settings import Base
 from app.user import User
 from app.authentication import AccessToken
 from app.news import News
+from app.role import UserRole
 
 config = context.config
 config.set_main_option("sqlalchemy.url", f"{DATABASE_URL}?async_fallback=True")

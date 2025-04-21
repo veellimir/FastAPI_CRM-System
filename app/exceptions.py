@@ -5,4 +5,9 @@ EXCEPTION_IMAGE_HTTP_500 = HTTPException(
     detail="Ошибка загрузки изображения"
 )
 
-EXCEPTION_USER_HTTP_404 = ValueError("Некорректный выбранный пользователь")
+EXCEPTION_USER_HTTP_404 = HTTPException(
+    status_code=404,
+    detail="Пользователь не найден"
+)
+
+# EXCEPTION_USER_HTTP_404 = ValueError("Некорректный выбранный пользователь")
