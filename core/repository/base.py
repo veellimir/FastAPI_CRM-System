@@ -13,3 +13,11 @@ class BaseDAO:
             result = await session.execute(query)
             return result.scalars().all()
 
+    @classmethod
+    async def add(cls, **kwargs):
+        async with AsyncSessionLocal() as session:
+            obj = cls.model(**kwargs)
+            session.add(obj)
+            await session.commit()
+            await session.refresh(obj)
+            return obj
