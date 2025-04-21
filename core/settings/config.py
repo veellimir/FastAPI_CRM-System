@@ -14,6 +14,7 @@ class ApiV1Prefix(BaseModel):
     users: str = "/users"
     role: str = "/user-role"
     news: str = "/news"
+    notification: str = "/notification"
 
 
 class ApiPrefix(BaseModel):
