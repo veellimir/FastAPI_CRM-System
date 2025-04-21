@@ -1,4 +1,5 @@
 from sqlalchemy import select
+from sqlalchemy.exc import SQLAlchemyError
 
 from core.repository import BaseDAO
 from core.settings.database import AsyncSessionLocal
@@ -21,6 +22,5 @@ class UserDAO(BaseDAO):
 
             if user is None:
                 raise EXCEPTION_USER_HTTP_404
-
             user.image = filename
             await session.commit()

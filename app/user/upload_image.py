@@ -26,4 +26,3 @@ async def upload_avatar(user_id: int, file: UploadFile = File(...)):
         return JSONResponse(content={"message": "Изображение обновлено"})
     except Exception:
         return EXCEPTION_IMAGE_HTTP_500
-
