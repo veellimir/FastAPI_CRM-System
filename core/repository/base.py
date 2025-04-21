@@ -36,3 +36,17 @@ class BaseDAO:
             await session.commit()
             await session.refresh(instance)
             return instance
+
+    @classmethod
+    async def delete(cls, **kwargs):
+        async with AsyncSessionLocal() as session:
+            query = select(cls.model).filter_by(**kwargs)
+            result = await session.execute(query)
+            obj = result.scalars().first()
+
+            if not obj:
+                return None
+
+            await session.delete(obj)
+            await session.commit()
+            return obj

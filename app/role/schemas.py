@@ -11,4 +11,9 @@ class RoleAssignAddSchem(schemas.BaseModel):
 
 
 class RoleReadSchem(schemas.BaseModel):
+    role_id: int
     title: str
+
+
+class RoleDeleteSchem(schemas.BaseModel):
+    role_id : int
