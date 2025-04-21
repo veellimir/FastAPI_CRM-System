@@ -12,4 +12,9 @@ COPY . .
 COPY wait-for-it.sh /usr/bin/wait-for-it.sh
 RUN chmod +x /usr/bin/wait-for-it.sh
 
+
+RUN useradd -ms /bin/bash celeryuser
+USER celeryuser
+
 #CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+
