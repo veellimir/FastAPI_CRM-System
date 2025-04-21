@@ -17,7 +17,7 @@ from app.exceptions import EXCEPTION_USER_HTTP_404
 
 router = APIRouter(
     prefix=settings.api.v1.role,
-    tags=["Роль Пользователей"]
+    tags=["Роль пользователей"]
 )
 
 

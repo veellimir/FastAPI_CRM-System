@@ -13,7 +13,7 @@ router = APIRouter(
 active_connections: list = []
 
 
-@router.websocket("ws/")
+@router.websocket("/ws")
 async def websocket_router(websocket: WebSocket) -> None:
     await websocket.accept()
     active_connections.append(websocket)

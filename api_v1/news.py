@@ -9,6 +9,7 @@ from app.news.dao import NewsDAO
 from app.news.schemas import NewsAddSchem, NewsReadSchem
 
 from core.settings import settings
+from .notification import send_notification
 
 router = APIRouter(
     prefix=settings.api.v1.news,
@@ -37,4 +38,5 @@ async def add_news(
     response_model=list[NewsReadSchem]
 )
 async def get_news(user: User = Depends(current_active_user)):
+    # await send_notification("кто-то получил сообщение новостей")
     return await NewsDAO.find_all()
