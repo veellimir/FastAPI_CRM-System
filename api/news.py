@@ -24,9 +24,9 @@ router = APIRouter(
     response_model=NewsAddSchem
 )
 async def add_news(
-    title: str,
-    description: Optional[str] = None,
-    user: User = Depends(current_active_user)
+        title: str,
+        description: Optional[str] = None,
+        user: User = Depends(current_active_user)
 ):
     return await NewsDAO.add(title=title, description=description)
 
