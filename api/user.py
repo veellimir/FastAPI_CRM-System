@@ -1,6 +1,3 @@
-from pathlib import Path
-from uuid import uuid4
-
 from fastapi import APIRouter, UploadFile, File
 from fastapi.params import Depends
 

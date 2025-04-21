@@ -1,14 +1,14 @@
 from fastapi_users import schemas
 
 
-class UserRoleCreate(schemas.BaseModel):
+class RoleAddSchem(schemas.BaseModel):
     title: str
 
 
-class RoleAssign(schemas.BaseModel):
+class RoleAssignAddSchem(schemas.BaseModel):
     user_id: int
     role_id: int
 
 
-class UserRoleRead(schemas.BaseModel):
+class RoleReadSchem(schemas.BaseModel):
     title: str

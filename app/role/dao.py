@@ -3,5 +3,5 @@ from core.repository import BaseDAO
 from app.role import UserRole
 
 
-class NewsDAO(BaseDAO):
+class UserRoleDAO(BaseDAO):
     model = UserRole
