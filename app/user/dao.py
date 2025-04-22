@@ -1,5 +1,4 @@
-from sqlalchemy import select
-from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy import select, or_
 
 from core.repository import BaseDAO
 from core.settings.database import AsyncSessionLocal
@@ -24,3 +23,15 @@ class UserDAO(BaseDAO):
                 raise EXCEPTION_USER_HTTP_404
             user.image = filename
             await session.commit()
+
+    @classmethod
+    async def search(cls, query_str: str):
+        async with AsyncSessionLocal() as session:
+            query = select(cls.model).where(or_(
+                cls.model.email.ilike(f"%{query_str}%"),
+                cls.model.first_name.ilike(f"%{query_str}%"),
+                cls.model.last_name.ilike(f"%{query_str}%")
+            ))
+
+            result = await session.execute(query)
+            return result.scalars().all()

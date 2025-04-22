@@ -93,3 +93,15 @@ async def delete_role(
         status_code=status.HTTP_200_OK,
         content={"message": "Роль успешно удалена"}
     )
+
+
+@router.get(
+    "/search",
+    summary="Поиск по подстроке",
+    response_model=list[RoleReadSchem]
+)
+async def search_role(
+        query: str = Query(..., min_length=1),
+) -> list[RoleReadSchem]:
+    roles = await UserRoleDAO.search(query)
+    return [RoleReadSchem(role_id=role.id, title=role.title) for role in roles]

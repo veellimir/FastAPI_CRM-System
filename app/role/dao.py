@@ -1,4 +1,5 @@
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy import select
 
 from core.settings.database import AsyncSessionLocal
 from core.repository import BaseDAO
@@ -22,3 +23,10 @@ class UserRoleDAO(BaseDAO):
                 return obj
             except IntegrityError:
                 raise EXCEPTION_CONFLICT_HTTP_400
+
+    @classmethod
+    async def search(cls, substring: str):
+        async with AsyncSessionLocal() as session:
+            query = select(cls.model).where(cls.model.title.ilike(f"%{substring}%"))
+            result = await session.execute(query)
+            return result.scalars().all()
