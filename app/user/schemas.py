@@ -7,6 +7,8 @@ class UserCreate(schemas.BaseUserCreate):
 
 
 class UserRead(schemas.BaseUser[int]):
+    id: int
+    email: str
     first_name: str | None = Field(default=None)
     last_name: str | None = Field(default=None)
     image: str | None = Field(default=None)
