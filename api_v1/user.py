@@ -9,7 +9,7 @@ from app.user import User
 from app.user.schemas import UserRead, UserUpdate
 from app.user.upload_image import upload_avatar
 
-from core.settings.config import settings
+from core.settings import settings
 
 
 router = APIRouter(
