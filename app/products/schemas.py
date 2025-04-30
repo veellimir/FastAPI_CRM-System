@@ -6,5 +6,5 @@ class CategoryProductAddSchem(schemas.BaseModel):
 
 
 class CategoryProductReadSchem(schemas.BaseModel):
-    category_id: int
+    id: int
     title: str

@@ -8,7 +8,7 @@ from .user import router as users_router
 from .user_role import router as role_router
 from .news import router as news_router
 from .notification import router as notification_router
-from .product import  router as category_products
+from .category_product import  router as category_products
 
 http_bearer = HTTPBearer(auto_error=False)
 
