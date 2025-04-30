@@ -1,10 +1,10 @@
-from fastapi import HTTPException, status
-
 from fastapi import APIRouter, UploadFile, File
 from sqlalchemy.exc import IntegrityError
 
 from app.authentication.dependencies import fastapi_users
 from app.authentication.dependencies import current_active_user, current_active_superuser
+
+from core.utils import _to_upper_case
 
 from app.products.exceptions import EXCEPTION_CONFLICT_HTTP_409
 
@@ -28,7 +28,7 @@ router = APIRouter(
 )
 async def add_category(title: str):
     try:
-        return await CategoryProductDAO.add(title=title)
+        return await CategoryProductDAO.add(title=_to_upper_case(title))
     except IntegrityError as e:
         if 'category_product_title_key' in str(e):
             raise EXCEPTION_CONFLICT_HTTP_409
